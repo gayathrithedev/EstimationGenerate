@@ -3244,6 +3244,11 @@ image-size@^0.6.0:
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.6.3.tgz#e7e5c65bb534bd7cdcedd6cb5166272a85f75fb2"
   integrity sha512-47xSUiQioGaB96nqtp5/q55m0aBQSQdyIloMOc/x+QVTDZLNmXE892IIDrJ0hM1A5vcNUDD5tDffkSP5lCaIIA==
 
+immer@^5.3.2:
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-5.3.2.tgz#e3a1c9f3550f925278fd86b8d2d644f7d5e9561b"
+  integrity sha512-wPWsSV0fv8iT7QQVs3rxBDWTbi5pHrVgnQv/McMfaRGJTLfQ3jFMEr08UibqS8hM17KCQXcjjYYzQzYe5e7BIA==
+
 import-fresh@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-2.0.0.tgz#d81355c15612d386c61f9ddd3922d4304822a546"
@@ -5532,6 +5537,11 @@ react-native-gesture-handler@^1.5.3:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-image-picker@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.2.0.tgz#12b5a29f5f21f4f7868e2a1e551b5528733f2d3e"
+  integrity sha512-G0wNa92J6ADLrAraLfhl+AoaLDP0FE4YpYlSh6sguLTCTUzNDi0xfpEvpxxZgZ6Wl0anuRrCkcWm7LmJNLHI2Q==
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
