@@ -1,28 +1,22 @@
 // @flow
 
 import {
-  ADD_COMPANY_NAME,
+  ADD_DESCRIPTION,
   ADD_COMPANY_LOGO,
   ADD_WORKED_COMPANY_NAME,
   ADD_HEADING,
   ADD_PRICE_LIST,
 } from './actionTypes';
 
-export type AddCompanyName = (text: string) => void();
+// export type AddCompanyName = (text: string) => void()
 
-export type AddCompanyLogo = (image: Image) => void();
+// export type AddCompanyLogo = (image: Image) => void()
 
-export type AddWorkedCompanyName = (text: string) => void();
+// export type AddWorkedCompanyName = (text: string) => void()
 
-export type AddHeading = (text: string) => void();
+// export type AddHeading = (text: string) => void()
 
-export type AddPriceList = (price: []) => void();
-
-
-export const addCompanyName = (text: string) => ({
-  type: ADD_COMPANY_NAME,
-  data: {text}
-})
+// export type AddPriceList = (price: []) => void()
 
 export const addCompanyLogo = (image: Image) => ({
   type: ADD_COMPANY_LOGO,
@@ -36,6 +30,11 @@ export const addWorkedCompanyName = (text: string) => ({
 
 export const addHeading = (text: string) => ({
   type: ADD_HEADING,
+  data: {text}
+})
+
+export const addDescription = (text: string) => ({
+  type: ADD_DESCRIPTION,
   data: {text}
 })
 

@@ -6,14 +6,14 @@ type Price = {
 };
 
 type Estimation = {
-  companyName: string,
   workedCompanyName: string,
-  heading: String,
+  heading: string,
+  description: string,
   logo: Image,
   priceList: Price[],
 };
 
 export type {
-  Pricece,
+  Price,
   Estimation
 };
