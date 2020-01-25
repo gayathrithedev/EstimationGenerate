@@ -42,9 +42,9 @@ export const addDescription = (text: string) => ({
   data: {text}
 })
 
-export const addPriceList = (id: Date, info: string, cost: number) => ({
+export const addPriceList = (id: Date, name: string, cost: number) => ({
   type: ADD_PRICE_LIST,
-  data: {id, info, cost}
+  data: {id, name, cost}
 })
 
 export const setEditPriceList = (id: Date) => ({
@@ -52,9 +52,9 @@ export const setEditPriceList = (id: Date) => ({
   data: {id}
 })
 
-export const editPriceList = (id: Date, info: string, cost: number) => ({
+export const editPriceList = (id: Date, name: string, cost: number) => ({
   type: EDIT_PRICE_LIST,
-  data: {id, info, cost}
+  data: {id, name, cost}
 })
 
 export const deletePriceList = (id: Date) => ({

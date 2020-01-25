@@ -56,7 +56,6 @@ const Home = (props: Props) => {
     },
     navigation,
   } = props;
-  console.log(priceList);
   return (
     <View style={styles.homeContainer}>
       {heading ? (

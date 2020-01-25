@@ -34,12 +34,12 @@ type Props = {
   addPriceList: *,
   navigation: *,
   estimation: Estimation,
+  editPriceList: *,
 }
 
 const AddPrice = (props: Props) => {
   const [info, setInfo] = useState(null);
   const [price, setPrice] = useState(0);
-  const [editData, setEditData]=useState({});
   const {
     navigation,
     addPriceList,
@@ -47,16 +47,22 @@ const AddPrice = (props: Props) => {
       editPriceId,
       priceList,
     },
+    editPriceList,
   } = props;
 
-  // useEffect(()=> {
-  //   const editPrice = priceList.filter(item => item.id === editPriceId);
-  //   setEditData(editPrice);
-  // }, []);
+  useEffect(()=> {
+    if(editPriceId) {
+    const editPrice = priceList.filter(item => item.id === editPriceId);
+    editPrice.map(item => {
+      setInfo(item.name);
+      setPrice(item.cost);
+    });
+  }
+  }, [editPriceId]);
 
   const onDoneButtonPress = () => {
     if(editPriceId !== null){
-      editPriceList(id, info, price);
+      editPriceList(editPriceId, info, price);
     } else  {
               addPriceList(new Date(), info, price);
             }
@@ -78,7 +84,8 @@ const AddPrice = (props: Props) => {
         <TextInput
           required
           mode="outlined"
-          value={price}
+          keyboardType="number-pad"
+          value={`${price}`}
           onChangeText={value => setPrice(value)}
           placeholder="Cost"
           label="Cost"

@@ -32,11 +32,11 @@ const addWorkedCompanyName = (state: Estimation, data: *) =>
 
     const addPriceList = (state: Estimation, data: *) =>
       produce(state, draft => {
-        const {id, info, cost} = data;
+        const {id, name, cost} = data;
         const {priceList} = state;
         const newPrice = {
           id: id,
-          name: info,
+          name: name,
           cost: cost,
         };
         const newPriceList = [...priceList,newPrice]
@@ -56,14 +56,15 @@ produce(state, draft=>{
   draft.priceList = newPriceList; 
 })
 
-const editPriceList = (state: Estimation, data: *) => 
+const editPriceList = (state: Estimation, data: *) =>
 produce(state, draft=>{
   const {id, name, cost} = data;
   const {
     priceList,
   } = state;
-  removePriceList(id);
-  addPriceList(id, name, cost);
+  const index = priceList.findIndex(item => item.id === id);
+  draft.priceList[index].name = name;
+  draft.priceList[index].cost = cost;
   draft.editPriceId = null;
 })
 
