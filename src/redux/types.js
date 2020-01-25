@@ -1,6 +1,7 @@
 // @flow
 
 type Price = {
+  id: string,
   name: string,
   cost: number,
 };
@@ -11,6 +12,7 @@ type Estimation = {
   description: string,
   logo: Image,
   priceList: Price[],
+  editPriceId: Date,
 };
 
 export type {

@@ -6,6 +6,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Home from './screens/Home';
 import Create from './screens/Create';
 import Show from './screens/Show';
+import AddPrice from './screens/AddPrice';
 
 const AppNavigator = createStackNavigator(
   {
@@ -17,6 +18,9 @@ const AppNavigator = createStackNavigator(
     },
     Show: {
       screen: Show,
+    },
+    AddPrice: {
+      screen: AddPrice,
     },
   },
   {

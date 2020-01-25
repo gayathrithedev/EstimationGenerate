@@ -6,7 +6,11 @@ import {
   ADD_WORKED_COMPANY_NAME,
   ADD_HEADING,
   ADD_PRICE_LIST,
+  EDIT_PRICE_LIST,
+  DELETE_PRICE_LIST,
+  SET_EDIT_PRICELIST,
 } from './actionTypes';
+
 
 // export type AddCompanyName = (text: string) => void()
 
@@ -38,7 +42,22 @@ export const addDescription = (text: string) => ({
   data: {text}
 })
 
-export const addPriceList = (price: []) => ({
+export const addPriceList = (id: Date, info: string, cost: number) => ({
   type: ADD_PRICE_LIST,
-  data: {price}
+  data: {id, info, cost}
+})
+
+export const setEditPriceList = (id: Date) => ({
+  type: SET_EDIT_PRICELIST,
+  data: {id}
+})
+
+export const editPriceList = (id: Date, info: string, cost: number) => ({
+  type: EDIT_PRICE_LIST,
+  data: {id, info, cost}
+})
+
+export const deletePriceList = (id: Date) => ({
+  type: DELETE_PRICE_LIST,
+  data: {id},
 })

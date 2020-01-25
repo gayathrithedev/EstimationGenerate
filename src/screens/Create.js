@@ -1,11 +1,12 @@
 // @flow
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {Button, TextInput, FAB, Checkbox} from 'react-native-paper';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {Button, TextInput, FAB, Checkbox, List} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../redux/actions';
 import {Estimation} from '../redux/types';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
   inputBox: {},
@@ -29,11 +30,32 @@ const styles = StyleSheet.create({
     width: '20%',
   },
   fab: {
+    marginTop: 16,
     backgroundColor: '#3c20c0',
   },
   checkbox: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  priceListWrapper: {
+    marginVertical: 16,
+  },
+  iconsWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  pencilIcon: {
+    color: 'orange',
+    marginLeft: 8,
+  },
+  deleteIcon: {
+    color: '#db0f1f',
+    marginLeft: 16,
+  },
+  list: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#3c20c0',
   },
 });
 
@@ -44,6 +66,10 @@ type Props = {
   addHeading: *,
   addPriceList: *,
   estimation: Estimation,
+  setEditPriceName: *,
+  deletePriceList: *,
+  editPriceList: *,
+  setEditPriceList: *,
 };
 
 const Create = (props: Props) => {
@@ -58,72 +84,90 @@ const Create = (props: Props) => {
     addWorkedCompanyName,
     addHeading,
     addPriceList,
+    navigation,
+    setEditPriceList,
+    editPriceList,
+    deletePriceList,
   }= props;
+  const [numOfPrice, setNewPrice] = useState([]);
+
+  const getPriceList = (item: *) => {
+    const {
+      name,
+      cost,
+    } = item;
+    const goToEdit = (id: Date)=>{
+      setEditPriceList(id);
+      navigation.navigate('AddPrice');
+    };
+    return (
+      <View key={item.id} style={styles.priceListWrapper}>
+        <List.Item
+        key={item.id}
+        style={styles.list}
+          title={name}
+          description={cost}
+          right={() => (
+            <View style={styles.iconsWrapper}>
+              <Icon name="pencil-outline" size={24} style={styles.pencilIcon}
+                onPress={() => goToEdit(item.id)}
+              />
+              <Icon name="delete-outline" size={24} style={styles.deleteIcon}
+                onPress={() => deletePriceList(item.id)}
+              />
+            </View>
+          )}
+        />
+      </View>
+    );
+  }
+  
   return (
-    <View style={styles.container}>
-      <View style={styles.inputWrapper}>
-        <TextInput
-          required
-          mode="outlined"
-          value={workedCompanyName}
-          onChangeText={value => addWorkedCompanyName(value)}
-          placeholder="Company Name"
-          label="Company Name"
-        />
-      </View>
-      <View style={styles.inputWrapper}>
-        <TextInput
-          required
-          mode="outlined"
-          value={heading}
-          onChangeText={value => addHeading(value)}
-          placeholder="Title of the work"
-          label="Title of the work"
-        />
-      </View>
-      <View style={styles.inputWrapper}>
-        <TextInput
-          required
-          mode="outlined"
-          multiline
-          value={description}
-          onChangeText={value => addDescription(value)}
-          placeholder="Description about the work"
-          label="Description about the work"
-        />
-      </View>
-      <View style={[styles.inputWrapper, styles.priceList]}>
-        <View style={[styles.inputWrapper, styles.priceDetailInput]}>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.inputWrapper}>
           <TextInput
             required
+            mode="outlined"
+            value={workedCompanyName}
+            onChangeText={value => addWorkedCompanyName(value)}
+            placeholder="Company Name"
+            label="Company Name"
+          />
+        </View>
+        <View style={styles.inputWrapper}>
+          <TextInput
+            required
+            mode="outlined"
+            value={heading}
+            onChangeText={value => addHeading(value)}
+            placeholder="Title of the work"
+            label="Title of the work"
+          />
+        </View>
+        <View style={styles.inputWrapper}>
+          <TextInput
+            required
+            mode="outlined"
             multiline
-            mode="outlined"
-            value={priceList.name}
-            onChangeText={value => addPriceList({name: value})}
-            placeholder="Work name"
-            label="Work name"
+            value={description}
+            onChangeText={value => addDescription(value)}
+            placeholder="Description about the work"
+            label="Description about the work"
           />
         </View>
-        <View style={[styles.inputWrapper, styles.priceInput]}>
-          <TextInput
-            required
-            mode="outlined"
-            keyboardType="numeric"
-            value={priceList.cost}
-            onChangeText={value => addPriceList({cost: value})}
-            placeholder="Cost"
-            label="Cost"
-          />
-        </View>
-        <View style={[styles.inputWrapper, styles.checkbox]}>
-          <Checkbox status="checked" color="#3c20c0" />
-        </View>
+        {priceList.length > 0
+          ? priceList.map(item => getPriceList(item))
+          : null}
+        <FAB
+          small
+          style={styles.fab}
+          label="Add Cost"
+          onPress={() => navigation.navigate('AddPrice')}
+        />
+        <Button onPress={() => navigation.navigate('Show')}>Go to Show</Button>
       </View>
-      <FAB small style={styles.fab} label="Add More Cost" />
-      <Button onPress={() => props.navigation.navigate('Show')}>
-        Go to Show
-      </Button>
-    </View>
+    </ScrollView>
   );
 };
 

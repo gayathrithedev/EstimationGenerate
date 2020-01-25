@@ -7,4 +7,5 @@ export const initialState: Estimation = {
   description: null,
   image: null,
   priceList: [],
+  editPriceId: null,
 };

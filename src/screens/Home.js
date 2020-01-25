@@ -5,7 +5,7 @@ import {Button, List, FAB} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../redux/actions';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
   homeContainer: {
@@ -56,6 +56,7 @@ const Home = (props: Props) => {
     },
     navigation,
   } = props;
+  console.log(priceList);
   return (
     <View style={styles.homeContainer}>
       {heading ? (
