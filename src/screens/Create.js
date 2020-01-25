@@ -57,6 +57,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#3c20c0',
   },
+  viewPdfButton: {
+    marginTop: 16,
+  },
 });
 
 type Props = {
@@ -165,7 +168,7 @@ const Create = (props: Props) => {
           label="Add Cost"
           onPress={() => navigation.navigate('AddPrice')}
         />
-        <Button onPress={() => navigation.navigate('Show')}>Go to Show</Button>
+        <Button mode="outlined" style={styles.viewPdfButton} onPress={() => navigation.navigate('Show')}>Go to Show</Button>
       </View>
     </ScrollView>
   );

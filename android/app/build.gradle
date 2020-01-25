@@ -135,6 +135,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -181,13 +182,13 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-image-picker')
-    implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01' //screens
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
+
+    compile project(':react-native-html-to-pdf') //pdf
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
