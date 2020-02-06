@@ -9,9 +9,15 @@ import {
   SET_EDIT_PRICELIST,
   EDIT_PRICE_LIST,
   DELETE_PRICE_LIST,
+  ADD_COMPANY_ADDRESS,
+  ADD_CONTACT_PERSON_NAME,
+  ADD_CONTACT_PERSON_EMAIL,
+  ADD_CONTACT_PERSON_PHONE_NUMBER,
+  ADD_CONTACT_PERSON_ADDRESS,
+  ADD_MORE_COST,
 } from './actionTypes';
 import {initialState} from './constants';
-import type {Estimation} from './types';
+ import type {Estimation} from './types';
 
 const addDescription = (state: Estimation, data:*) => produce(state, draft=>{
   const {text} = data;
@@ -68,6 +74,48 @@ produce(state, draft=>{
   draft.editPriceId = null;
 })
 
+const addCompanyAddress = (state: Estimation, data:*) =>
+produce(state, draft=>{
+  const {address} = data;
+  draft.companyAddress = address;
+})
+
+const addContactPersonName = (state: Estimation, data: *) =>
+produce(state, draft=>{
+  const {name} = data;
+  draft.contactPersonDetail.name =  name;
+})
+
+const addContactPersonEmail = (state: Estimation, data: *) =>
+produce(state, draft=>{
+  const {email} = data;
+  draft.contactPersonDetail.email = email;
+})
+
+const addContactPersonPhoneNumber = (state: Estimation, data: *) =>
+produce(state, draft => {
+  const {number} = data;
+  draft.contactPersonDetail.phoneNumber = number;
+})
+
+const addContactPersonAddress = (state: Estimation, data: *) =>
+produce(state, draft=>{
+  const {address} = data;
+  draft.contactPersonDetail.address = address;
+})
+
+const addMoreCost = (state: Estimation, data: *) =>
+produce(state, draft=>{
+  const {id, name, cost} = data;
+  const newPrice = {
+    id: id,
+    name: name,
+    cost: cost,
+  };
+  const newPriceList = [...priceList,newPrice]
+  draft.priceList=newPriceList;
+})
+
 const estimationReducer = (
   state: Estimation= {...initialState},
   action: *,
@@ -87,6 +135,18 @@ const estimationReducer = (
       return editPriceList(state, action.data);
     case DELETE_PRICE_LIST:
       return deletePriceList(state, action.data);
+    case ADD_COMPANY_ADDRESS:
+      return addCompanyAddress(state, action.data);
+    case ADD_CONTACT_PERSON_NAME:
+      return addContactPersonName(state, action.data);
+    case ADD_CONTACT_PERSON_EMAIL:
+      return addContactPersonEmail(state, action.data);
+    case ADD_CONTACT_PERSON_PHONE_NUMBER:
+      return addContactPersonPhoneNumber(state, action.data);
+    case ADD_CONTACT_PERSON_ADDRESS:
+      return addContactPersonAddress(state, action.data);
+    case ADD_MORE_COST:
+      return addMoreCost(state, action.data);
     default:
       return state;
   }

@@ -76,7 +76,7 @@ const Home = (props: Props) => {
       ) : null}
       <FAB
         icon="plus"
-        onPress={() => props.navigation.navigate('Create')}
+        onPress={() => props.navigation.navigate('CompanyDetails')}
         style={styles.fab}
       />
     </View>

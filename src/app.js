@@ -4,23 +4,23 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
 import Home from './screens/Home';
-import Create from './screens/Create';
+import CompanyDetails from './screens/CompanyDetails';
 import Show from './screens/Show';
-import AddPrice from './screens/AddPrice';
+import PriceDetails from './screens/PriceDetails';
 
 const AppNavigator = createStackNavigator(
   {
     Home: {
       screen: Home,
     },
-    Create: {
-      screen: Create,
+    CompanyDetails: {
+      screen: CompanyDetails,
     },
     Show: {
       screen: Show,
     },
-    AddPrice: {
-      screen: AddPrice,
+    PriceDetails: {
+      screen: PriceDetails,
     },
   },
   {

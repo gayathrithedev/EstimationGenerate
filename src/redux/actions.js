@@ -9,6 +9,12 @@ import {
   EDIT_PRICE_LIST,
   DELETE_PRICE_LIST,
   SET_EDIT_PRICELIST,
+  ADD_COMPANY_ADDRESS,
+  ADD_CONTACT_PERSON_NAME,
+  ADD_CONTACT_PERSON_EMAIL,
+  ADD_CONTACT_PERSON_PHONE_NUMBER,
+  ADD_CONTACT_PERSON_ADDRESS,
+  ADD_MORE_COST,
 } from './actionTypes';
 
 
@@ -60,4 +66,34 @@ export const editPriceList = (id: Date, name: string, cost: number) => ({
 export const deletePriceList = (id: Date) => ({
   type: DELETE_PRICE_LIST,
   data: {id},
+})
+
+export const addCompanyAddress = (address: string) => ({
+  type: ADD_COMPANY_ADDRESS,
+  data: {address}
+})
+
+export const addContactPersonName = (name: string) => ({
+  type: ADD_CONTACT_PERSON_NAME,
+  data: {name}
+})
+
+export const addContactPersonEmail = (email: string) => ({
+  type: ADD_CONTACT_PERSON_EMAIL,
+  data: {email}
+})
+
+export const addContactPersonPhoneNumber = (number: number) => ({
+  type: ADD_CONTACT_PERSON_PHONE_NUMBER,
+  data: {number}
+})
+
+export const addContactPersonAddress = (address: string) => ({
+  type: ADD_CONTACT_PERSON_ADDRESS,
+  data: {address}
+})
+
+export const addMoreCost = (id: Date, name: string, cost: number) => ({
+  type: ADD_MORE_COST,
+  data:{id,name,cost}
 })

@@ -64,33 +64,34 @@ const styles = StyleSheet.create({
 
 type Props = {
   navigation: *,
-  addDescription: *,
   addWorkedCompanyName: *,
-  addHeading: *,
-  addPriceList: *,
   estimation: Estimation,
-  setEditPriceName: *,
-  deletePriceList: *,
-  editPriceList: *,
-  setEditPriceList: *,
+  addCompanyAddress: *,
+  addContactPersonName: *,
+  addContactPersonEmail: *,
+  addContactPersonPhoneNumber: *,
+  addContactPersonAddress: *,
 };
 
-const Create = (props: Props) => {
+const CompanyDetails = (props: Props) => {
   const {
     estimation: {
-      description,
       workedCompanyName,
-      heading,
-      priceList,
+      companyAddress,
+      contactPersonDetail: {
+        name,
+        email,
+        phoneNumber,
+        address,
+      }
     },
-    addDescription,
     addWorkedCompanyName,
-    addHeading,
-    addPriceList,
+    addCompanyAddress,
+    addContactPersonName,
+    addContactPersonEmail,
+    addContactPersonPhoneNumber,
+    addContactPersonAddress,
     navigation,
-    setEditPriceList,
-    editPriceList,
-    deletePriceList,
   }= props;
   const [numOfPrice, setNewPrice] = useState([]);
 
@@ -137,38 +138,53 @@ const Create = (props: Props) => {
             placeholder="Company Name"
             label="Company Name"
           />
-        </View>
-        <View style={styles.inputWrapper}>
           <TextInput
             required
-            mode="outlined"
-            value={heading}
-            onChangeText={value => addHeading(value)}
-            placeholder="Title of the work"
-            label="Title of the work"
-          />
-        </View>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            required
-            mode="outlined"
             multiline
-            value={description}
-            onChangeText={value => addDescription(value)}
-            placeholder="Description about the work"
-            label="Description about the work"
+            numberOfLines={10}
+            mode="outlined"
+            value={companyAddress}
+            onChangeText={value => addCompanyAddress(value)}
+            placeholder="Company Address"
+            label="Company Address"
+          />
+          <TextInput
+            required
+            mode="outlined"
+            value={name}
+            onChangeText={value => addContactPersonName(value)}
+            placeholder="Contact person Name"
+            label="Contact person Name"
+          />
+          <TextInput
+            required
+            mode="outlined"
+            value={email}
+            onChangeText={value => addContactPersonEmail(value)}
+            placeholder="Contact person email"
+            label="Contact person email"
+          />
+          <TextInput
+            required
+            mode="outlined"
+            keyboardType="number-pad"
+            value={phoneNumber}
+            onChangeText={value => addContactPersonPhoneNumber(value)}
+            placeholder="Contact person Phone Number"
+            label="Contact person Phone Number"
+          />
+          <TextInput
+            required
+            multiline
+            numberOfLines={10}
+            mode="outlined"
+            value={address}
+            onChangeText={value => addContactPersonAddress(value)}
+            placeholder="Contact person Address"
+            label="Contact person Address"
           />
         </View>
-        {priceList.length > 0
-          ? priceList.map(item => getPriceList(item))
-          : null}
-        <FAB
-          small
-          style={styles.fab}
-          label="Add Cost"
-          onPress={() => navigation.navigate('AddPrice')}
-        />
-        <Button mode="outlined" style={styles.viewPdfButton} onPress={() => navigation.navigate('Show')}>Go to Show</Button>
+        <Button mode="outlined" style={styles.viewPdfButton} onPress={() => navigation.navigate('AddPriceDetails')}>Go to Show</Button>
       </View>
     </ScrollView>
   );
@@ -185,4 +201,4 @@ export default connect(
     },
     dispatch,
   )
-)(Create);
+)(CompanyDetails);
