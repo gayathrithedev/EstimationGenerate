@@ -104,15 +104,15 @@ const AddPrice = (props: Props) => {
           label="Cost"
           style={[styles.priceInput, styles.costInput]}
         />
-        <Button mode="contained" style={[styles.doneButton, styles.button]}
-          onPress={() => onDoneButtonPress()}
-        >
-          Done
-        </Button>
-        <Button mode="outlined" style={[styles.addMoreButton, styles.button]}
+        <Button mode="contained" style={[styles.addMoreButton, styles.button]}
           onPress={() => onAddMoreButtonPress()}
         >
           Add More
+        </Button>
+        <Button mode="outlined" style={[styles.doneButton, styles.button]}
+          onPress={() => onDoneButtonPress()}
+        >
+          Done
         </Button>
       </View>
   );
