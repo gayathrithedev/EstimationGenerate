@@ -6,7 +6,8 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Home from './screens/Home';
 import CompanyDetails from './screens/CompanyDetails';
 import Show from './screens/Show';
-import PriceDetails from './screens/PriceDetails';
+import WorkDetails from './screens/WorkDetails';
+import AddPrice from './screens/AddPrice';
 
 const AppNavigator = createStackNavigator(
   {
@@ -19,9 +20,12 @@ const AppNavigator = createStackNavigator(
     Show: {
       screen: Show,
     },
-    PriceDetails: {
-      screen: PriceDetails,
+    WorkDetails: {
+      screen: WorkDetails,
     },
+    AddPrice: {
+      screen: AddPrice,
+    }
   },
   {
     initialRouteName: 'Home',

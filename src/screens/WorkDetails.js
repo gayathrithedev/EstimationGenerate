@@ -64,34 +64,33 @@ const styles = StyleSheet.create({
 
 type Props = {
   navigation: *,
+  addDescription: *,
   addWorkedCompanyName: *,
+  addHeading: *,
+  addPriceList: *,
   estimation: Estimation,
-  addCompanyAddress: *,
-  addContactPersonName: *,
-  addContactPersonEmail: *,
-  addContactPersonPhoneNumber: *,
-  addContactPersonAddress: *,
+  setEditPriceName: *,
+  deletePriceList: *,
+  editPriceList: *,
+  setEditPriceList: *,
 };
 
-const CompanyDetails = (props: Props) => {
+const WorkDetails = (props: Props) => {
   const {
     estimation: {
+      description,
       workedCompanyName,
-      companyAddress,
-      contactPersonDetail: {
-        name,
-        email,
-        phoneNumber,
-        address,
-      }
+      heading,
+      priceList,
     },
+    addDescription,
     addWorkedCompanyName,
-    addCompanyAddress,
-    addContactPersonName,
-    addContactPersonEmail,
-    addContactPersonPhoneNumber,
-    addContactPersonAddress,
+    addHeading,
+    addPriceList,
     navigation,
+    setEditPriceList,
+    editPriceList,
+    deletePriceList,
   }= props;
   const [numOfPrice, setNewPrice] = useState([]);
 
@@ -130,73 +129,36 @@ const CompanyDetails = (props: Props) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.inputWrapper}>
+          <TextInput
+            required
+            mode="outlined"
+            value={heading}
+            onChangeText={value => addHeading(value)}
+            placeholder="Title of the work"
+            label="Title of the work"
+          />
+        </View>
         <View style={styles.inputWrapper}>
           <TextInput
             required
             mode="outlined"
-            value={workedCompanyName}
-            onChangeText={value => addWorkedCompanyName(value)}
-            placeholder="Company Name"
-            label="Company Name"
-          />
-          </View>
-          <View style={styles.inputWrapper}>
-          <TextInput
-            required
             multiline
-            numberOfLines={10}
-            mode="outlined"
-            value={companyAddress}
-            onChangeText={value => addCompanyAddress(value)}
-            placeholder="Company Address"
-            label="Company Address"
+            value={description}
+            onChangeText={value => addDescription(value)}
+            placeholder="Description about the work"
+            label="Description about the work"
           />
-          </View>
-          <View style={styles.inputWrapper}>
-          <TextInput
-            required
-            mode="outlined"
-            value={name}
-            onChangeText={value => addContactPersonName(value)}
-            placeholder="Contact person Name"
-            label="Contact person Name"
-          />
-          </View>
-          <View style={styles.inputWrapper}>
-          <TextInput
-            required
-            mode="outlined"
-            value={email}
-            onChangeText={value => addContactPersonEmail(value)}
-            placeholder="Contact person email"
-            label="Contact person email"
-          />
-          </View>
-          <View style={styles.inputWrapper}>
-          <TextInput
-            required
-            mode="outlined"
-            keyboardType="number-pad"
-            value={phoneNumber}
-            onChangeText={value => addContactPersonPhoneNumber(value)}
-            placeholder="Contact person Phone Number"
-            label="Contact person Phone Number"
-          />
-          </View>
-          <View style={styles.inputWrapper}>
-          <TextInput
-            required
-            multiline
-            numberOfLines={10}
-            mode="outlined"
-            value={address}
-            onChangeText={value => addContactPersonAddress(value)}
-            placeholder="Contact person Address"
-            label="Contact person Address"
-          />
-          </View>
         </View>
-        <Button mode="outlined" style={styles.viewPdfButton} onPress={() => navigation.navigate('WorkDetails')}>Add Work Info</Button>
+        {priceList.length > 0
+          ? priceList.map(item => getPriceList(item))
+          : null}
+        <FAB
+          small
+          style={styles.fab}
+          label="Add Cost"
+          onPress={() => navigation.navigate('AddPrice')}
+        />
+        <Button mode="outlined" style={styles.viewPdfButton} onPress={() => navigation.navigate('Show')}>Go to Show</Button>
       </View>
     </ScrollView>
   );
@@ -213,4 +175,4 @@ export default connect(
     },
     dispatch,
   )
-)(CompanyDetails);
+)(WorkDetails);

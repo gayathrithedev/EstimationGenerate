@@ -17,12 +17,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 8,
   },
-  doneButton: {
+  button: {
     padding: 8,
-    width: '30%',
     alignSelf: 'center',
     borderRadius: 50,
     marginTop: 16,
+  },
+  doneButton: {
+    width: '30%',
+  },
+  addMoreButton: {
+    width: '50%',
   },
   costInput: {
     width: '40%',
@@ -66,8 +71,16 @@ const AddPrice = (props: Props) => {
     } else  {
               addPriceList(new Date(), info, price);
             }
-    navigation.navigate('Create');
+    navigation.navigate('WorkDetails');
   };
+
+  const onAddMoreButtonPress = () => {
+    if(info !== null){
+    addPriceList(new Date(), info, price);
+    }
+    setInfo(null);
+    setPrice(0);
+  }
 
   return (
     <View style={styles.container}>
@@ -91,10 +104,15 @@ const AddPrice = (props: Props) => {
           label="Cost"
           style={[styles.priceInput, styles.costInput]}
         />
-        <Button mode="contained" style={styles.doneButton}
+        <Button mode="contained" style={[styles.doneButton, styles.button]}
           onPress={() => onDoneButtonPress()}
         >
           Done
+        </Button>
+        <Button mode="outlined" style={[styles.addMoreButton, styles.button]}
+          onPress={() => onAddMoreButtonPress()}
+        >
+          Add More
         </Button>
       </View>
   );

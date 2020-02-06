@@ -75,6 +75,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
   },
+  toDetail: {
+    fontSize: 14,
+    paddingLeft: 40,
+  }
 });
 
 type Props = {
@@ -89,6 +93,12 @@ const Show = (props: Props) => {
       heading,
       description,
       priceList,
+      contactPersonDetail: {
+        name,
+        email,
+        phoneNumber,
+        address,
+      },
     },
   } = props;
   const generatePdf = async () => {
@@ -116,6 +126,10 @@ const Show = (props: Props) => {
       <View style={styles.contentWrapper}>
         <Text style={styles.heading}>{heading}</Text>
         <Text style={styles.toCompany}>{`To: ${workedCompanyName}`}</Text>
+        <Text style={styles.toDetail}>{name}</Text>
+        <Text style={styles.toDetail}>{address}</Text>
+        <Text style={styles.toDetail}>{email}</Text>
+        <Text style={styles.toDetail}>{phoneNumber}</Text>
         <Text style={styles.description}>{description}</Text>
         <View style={styles.priceListContainer}>
           <Text style={styles.estimatedText}>Estimated Budget:</Text>
