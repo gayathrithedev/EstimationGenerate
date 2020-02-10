@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   },
   viewPdfButton: {
     marginTop: 16,
+    padding: 8,
   },
 });
 
@@ -70,7 +71,6 @@ type Props = {
   addContactPersonName: *,
   addContactPersonEmail: *,
   addContactPersonPhoneNumber: *,
-  addContactPersonAddress: *,
 };
 
 const CompanyDetails = (props: Props) => {
@@ -90,7 +90,6 @@ const CompanyDetails = (props: Props) => {
     addContactPersonName,
     addContactPersonEmail,
     addContactPersonPhoneNumber,
-    addContactPersonAddress,
     navigation,
   }= props;
   const [numOfPrice, setNewPrice] = useState([]);
@@ -125,7 +124,7 @@ const CompanyDetails = (props: Props) => {
       </View>
     );
   }
-  
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -144,7 +143,7 @@ const CompanyDetails = (props: Props) => {
           <TextInput
             required
             multiline
-            numberOfLines={10}
+            numberOfLines={7}
             mode="outlined"
             value={companyAddress}
             onChangeText={value => addCompanyAddress(value)}
@@ -166,7 +165,9 @@ const CompanyDetails = (props: Props) => {
           <TextInput
             required
             mode="outlined"
+            autoCapitalize="none"
             value={email}
+            textContentType="emailAddress"
             onChangeText={value => addContactPersonEmail(value)}
             placeholder="Contact person email"
             label="Contact person email"
@@ -183,20 +184,9 @@ const CompanyDetails = (props: Props) => {
             label="Contact person Phone Number"
           />
           </View>
-          <View style={styles.inputWrapper}>
-          <TextInput
-            required
-            multiline
-            numberOfLines={10}
-            mode="outlined"
-            value={address}
-            onChangeText={value => addContactPersonAddress(value)}
-            placeholder="Contact person Address"
-            label="Contact person Address"
-          />
-          </View>
         </View>
-        <Button mode="outlined" style={styles.viewPdfButton} onPress={() => navigation.navigate('WorkDetails')}>Add Work Info</Button>
+        <Button 
+        mode="contained" style={styles.viewPdfButton} onPress={() => navigation.navigate('WorkDetails')}>Add Work Info</Button>
       </View>
     </ScrollView>
   );

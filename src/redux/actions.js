@@ -13,7 +13,6 @@ import {
   ADD_CONTACT_PERSON_NAME,
   ADD_CONTACT_PERSON_EMAIL,
   ADD_CONTACT_PERSON_PHONE_NUMBER,
-  ADD_CONTACT_PERSON_ADDRESS,
   ADD_MORE_COST,
 } from './actionTypes';
 
@@ -86,11 +85,6 @@ export const addContactPersonEmail = (email: string) => ({
 export const addContactPersonPhoneNumber = (number: number) => ({
   type: ADD_CONTACT_PERSON_PHONE_NUMBER,
   data: {number}
-})
-
-export const addContactPersonAddress = (address: string) => ({
-  type: ADD_CONTACT_PERSON_ADDRESS,
-  data: {address}
 })
 
 export const addMoreCost = (id: Date, name: string, cost: number) => ({

@@ -13,7 +13,6 @@ import {
   ADD_CONTACT_PERSON_NAME,
   ADD_CONTACT_PERSON_EMAIL,
   ADD_CONTACT_PERSON_PHONE_NUMBER,
-  ADD_CONTACT_PERSON_ADDRESS,
   ADD_MORE_COST,
 } from './actionTypes';
 import {initialState} from './constants';
@@ -98,12 +97,6 @@ produce(state, draft => {
   draft.contactPersonDetail.phoneNumber = number;
 })
 
-const addContactPersonAddress = (state: Estimation, data: *) =>
-produce(state, draft=>{
-  const {address} = data;
-  draft.contactPersonDetail.address = address;
-})
-
 const addMoreCost = (state: Estimation, data: *) =>
 produce(state, draft=>{
   const {id, name, cost} = data;
@@ -143,8 +136,6 @@ const estimationReducer = (
       return addContactPersonEmail(state, action.data);
     case ADD_CONTACT_PERSON_PHONE_NUMBER:
       return addContactPersonPhoneNumber(state, action.data);
-    case ADD_CONTACT_PERSON_ADDRESS:
-      return addContactPersonAddress(state, action.data);
     case ADD_MORE_COST:
       return addMoreCost(state, action.data);
     default:

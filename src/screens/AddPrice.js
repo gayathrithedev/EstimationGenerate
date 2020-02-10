@@ -68,7 +68,7 @@ const AddPrice = (props: Props) => {
   const onDoneButtonPress = () => {
     if(editPriceId !== null){
       editPriceList(editPriceId, info, price);
-    } else  {
+    } if(info !== null && editPriceId === null) {
               addPriceList(new Date(), info, price);
             }
     navigation.navigate('WorkDetails');
@@ -104,12 +104,17 @@ const AddPrice = (props: Props) => {
           label="Cost"
           style={[styles.priceInput, styles.costInput]}
         />
-        <Button mode="contained" style={[styles.addMoreButton, styles.button]}
-          onPress={() => onAddMoreButtonPress()}
-        >
-          Add More
-        </Button>
-        <Button mode="outlined" style={[styles.doneButton, styles.button]}
+        {
+          editPriceId === null ? (
+            <Button mode="contained" style={[styles.addMoreButton, styles.button]}
+              onPress={() => onAddMoreButtonPress()}
+            >
+              Add More
+            </Button>
+          ) : null
+        }
+        
+        <Button mode={editPriceId ? "contained" : "outlined"} style={[styles.doneButton, styles.button]}
           onPress={() => onDoneButtonPress()}
         >
           Done
